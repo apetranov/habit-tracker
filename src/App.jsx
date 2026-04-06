@@ -4,9 +4,9 @@ import HabitInput from './components/HabitInput'
 import HabitList from './components/HabitList';
 
 function App() {
-  const [habits, setHabits] = useState([]);
+  const [habits, setHabits] = useState(JSON.parse(localStorage.getItem('habits')) || []);
   const [habitName, setHabitName] = useState('');
-  const [habitId, setHabitId] = useState(0);
+  const [habitId, setHabitId] = useState(JSON.parse(localStorage.getItem('habitId')) || 0);
 
   const getCurrentDate = () => {
    
@@ -20,7 +20,13 @@ function App() {
   }
 
   const handleCompleteHabit = (id) => {
-    const habitsCopy = [...habits]
+    let habitsCopy;
+
+    if (!localStorage.getItem('habits')) {
+      habitsCopy = [...habits];
+    } else {
+      habitsCopy = [...JSON.parse(localStorage.getItem('habits'))];
+    }
 
     let currentDate = getCurrentDate();
 
@@ -35,6 +41,7 @@ function App() {
     }
 
     setHabits(habitsCopy);
+    localStorage.setItem('habits', JSON.stringify(habitsCopy));
   }
 
   const handleAddHabit = () => {
@@ -42,7 +49,13 @@ function App() {
       return;
     }
 
-    const habitsCopy = [...habits];
+    let habitsCopy;
+
+    if (!localStorage.getItem('habits')) {
+      habitsCopy = [...habits];
+    } else {
+      habitsCopy = [...JSON.parse(localStorage.getItem('habits'))];
+    }
 
     const newHabit = {
       id: habitId,
@@ -54,6 +67,8 @@ function App() {
 
     setHabits(habitsCopy);
     setHabitId(id => id + 1);
+    localStorage.setItem('habitId', JSON.stringify(habitId));
+    localStorage.setItem('habits', JSON.stringify(habitsCopy));
   }
 
   return (
