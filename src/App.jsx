@@ -8,6 +8,35 @@ function App() {
   const [habitName, setHabitName] = useState('');
   const [habitId, setHabitId] = useState(0);
 
+  const getCurrentDate = () => {
+   
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
+
+  const handleCompleteHabit = (id) => {
+    const habitsCopy = [...habits]
+
+    let currentDate = getCurrentDate();
+
+    for (let i = 0; i < habitsCopy.length; i++) {
+      if (habitsCopy[i].id === id) {
+        if (!habitsCopy[i].completedDates.includes(currentDate)) {
+          habitsCopy[i].completedDates.push(currentDate);
+        } else if (habitsCopy[i].completedDates.includes(currentDate)) {
+          habitsCopy[i].completedDates.pop();
+        }
+      }
+    }
+
+    setHabits(habitsCopy);
+  }
+
   const handleAddHabit = () => {
     if (!habitName) {
       return;
@@ -35,7 +64,11 @@ function App() {
         setHabitName={setHabitName}
         habits={habits}
       />
-      <HabitList habits={habits} />
+      <HabitList 
+        handleCompleteHabit={handleCompleteHabit}
+        habits={habits}
+        getCurrentDate={getCurrentDate}
+      />
     </div>
   )
 }

@@ -1,13 +1,17 @@
 import React from 'react'
 import './styles/HabitList.css'
 
-function HabitList({ habits }) {
+function HabitList({ habits, handleCompleteHabit, getCurrentDate }) {
   return (
     <div className='habit-list'>
         {habits.map(habit => {
-            return <div className='habit-container' key={habit.id}>
-                <input type="checkbox" />
-                <p>{habit.name}</p>
+            return <div 
+                className={
+                    `habit-container 
+                    ${habit.completedDates.includes(getCurrentDate()) ? `habit-completed` : ``}`
+                    } key={habit.id}>
+                <input onClick={() => handleCompleteHabit(habit.id)} className='checkbox' type="checkbox" />
+                <p className='habit-name'>{habit.name}</p>
             </div>
         })}
     </div>
