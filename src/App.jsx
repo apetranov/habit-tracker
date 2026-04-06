@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import './App.css'
+import HabitInput from './components/HabitInput'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      
-    </>
+    <div className='container'>
+      <HabitInput />
+    </div>
   )
 }
 
