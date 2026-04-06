@@ -9,6 +9,10 @@ function App() {
   const [habitId, setHabitId] = useState(0);
 
   const handleAddHabit = () => {
+    if (!habitName) {
+      return;
+    }
+
     const habitsCopy = [...habits];
 
     const newHabit = {
