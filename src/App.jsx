@@ -3,6 +3,7 @@ import './App.css'
 import HabitInput from './components/HabitInput'
 import HabitList from './components/HabitList';
 import DailyProgressBar from './components/DailyProgressBar';
+import ConfirmDeleteHabit from './components/ConfirmDeleteHabit';
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -10,6 +11,8 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [habits, setHabits] = useState(JSON.parse(localStorage.getItem('habits')) || []);
   const [habitName, setHabitName] = useState('');
+  const [deleteHabitPopup, setDeleteHabitPopup] = useState(false);
+  const [idToDelete, setIdToDelete] = useState('');
   // const [habitId, setHabitId] = useState(uuidv4());
 
   const getCurrentDate = () => {
@@ -101,10 +104,17 @@ function App() {
     }
 
     let progress = habits.length > 0 ? ((completedCnt / habits.length) * 100).toFixed(0) : 0;
+    
 
 
   return (
     <div className='container'>
+      {deleteHabitPopup && <ConfirmDeleteHabit 
+        handleDeleteHabit={handleDeleteHabit}
+        setDeleteHabitPopup={setDeleteHabitPopup}
+        idToDelete={idToDelete}
+        habits={habits}
+      />}
       <HabitInput 
         handleAddHabit={handleAddHabit}
         habitName={habitName}
@@ -120,6 +130,9 @@ function App() {
         habits={habits}
         getCurrentDate={getCurrentDate}
         handleDeleteHabit={handleDeleteHabit}
+        deleteHabitPopup={deleteHabitPopup}
+        setDeleteHabitPopup={setDeleteHabitPopup}
+        setIdToDelete={setIdToDelete}
       />
     </div>
   )
