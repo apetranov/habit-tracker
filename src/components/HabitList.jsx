@@ -1,7 +1,15 @@
 import React from 'react'
 import './styles/HabitList.css'
+import { FaRegTrashAlt } from "react-icons/fa";
 
-function HabitList({ habits, handleCompleteHabit, getCurrentDate }) {
+function HabitList({ 
+    habits, 
+    handleCompleteHabit, 
+    getCurrentDate, 
+    // handleDeleteHabit,
+    setDeleteHabitPopup,
+    setIdToDelete
+}) {
   return (
     <div className='habit-list'>
         {habits.map(habit => {
@@ -10,7 +18,17 @@ function HabitList({ habits, handleCompleteHabit, getCurrentDate }) {
                     `habit-container 
                     ${habit.completedDates.includes(getCurrentDate()) ? `habit-completed` : ``}`
                     } key={habit.id}>
-                <input checked={habit.completedDates.includes(getCurrentDate())} onChange={() => handleCompleteHabit(habit.id)} className='checkbox' type="checkbox" />
+                    <div className='habit-actions-div'>
+                        <input checked={habit.completedDates.includes(getCurrentDate())} onChange={() => handleCompleteHabit(habit.id)} className='checkbox' type="checkbox" />
+                        <FaRegTrashAlt
+                            className='delete-icon'
+                            // onClick={() => handleDeleteHabit(habit.id)}
+                            onClick={() => {
+                                setDeleteHabitPopup(true);
+                                setIdToDelete(habit.id);
+                            }}
+                        />
+                    </div>
                 <p className='habit-name'>{habit.name}</p>
             </div>
         })}
