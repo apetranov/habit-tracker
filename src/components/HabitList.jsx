@@ -10,7 +10,7 @@ function HabitList({ habits, handleCompleteHabit, getCurrentDate }) {
                     `habit-container 
                     ${habit.completedDates.includes(getCurrentDate()) ? `habit-completed` : ``}`
                     } key={habit.id}>
-                <input checked={habit.completedDates.includes(getCurrentDate()) ? true : false} onClick={() => handleCompleteHabit(habit.id)} className='checkbox' type="checkbox" />
+                <input checked={habit.completedDates.includes(getCurrentDate())} onChange={() => handleCompleteHabit(habit.id)} className='checkbox' type="checkbox" />
                 <p className='habit-name'>{habit.name}</p>
             </div>
         })}

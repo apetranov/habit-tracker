@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import HabitInput from './components/HabitInput'
 import HabitList from './components/HabitList';
+import DailyProgressBar from './components/DailyProgressBar';
 
 function App() {
   const [habits, setHabits] = useState(JSON.parse(localStorage.getItem('habits')) || []);
@@ -45,6 +46,7 @@ function App() {
   }
 
   const handleAddHabit = () => {
+    setHabitId(id => id + 1);
     if (!habitName) {
       return;
     }
@@ -66,10 +68,21 @@ function App() {
     habitsCopy.push(newHabit);
 
     setHabits(habitsCopy);
-    setHabitId(id => id + 1);
+    
     localStorage.setItem('habitId', JSON.stringify(habitId));
     localStorage.setItem('habits', JSON.stringify(habitsCopy));
   }
+
+  let completedCnt = 0;
+
+    for (let i = 0; i < habits.length; i++) {
+        if (habits[i].completedDates.includes(getCurrentDate())) {
+            completedCnt++;
+        }
+    }
+
+    let progress = habits.length > 0 ? ((completedCnt / habits.length) * 100).toFixed(0) : 0;
+
 
   return (
     <div className='container'>
@@ -77,6 +90,10 @@ function App() {
         handleAddHabit={handleAddHabit}
         habitName={habitName}
         setHabitName={setHabitName}
+        habits={habits}
+      />
+      <DailyProgressBar
+        progress={progress}
         habits={habits}
       />
       <HabitList 
