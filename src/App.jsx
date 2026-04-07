@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import HabitInput from './components/HabitInput'
 import HabitList from './components/HabitList';
 import DailyProgressBar from './components/DailyProgressBar';
 import ConfirmDeleteHabit from './components/ConfirmDeleteHabit';
+import AllHabitsFinishedPopup from './components/AllHabitsFinishedPopup';
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -13,6 +14,7 @@ function App() {
   const [habitName, setHabitName] = useState('');
   const [deleteHabitPopup, setDeleteHabitPopup] = useState(false);
   const [idToDelete, setIdToDelete] = useState('');
+  const [dailyHabitsFinishedPopup, setDailyHabitsFinishedPopup] = useState(false);
   // const [habitId, setHabitId] = useState(uuidv4());
 
   const getCurrentDate = () => {
@@ -105,10 +107,19 @@ function App() {
 
     let progress = habits.length > 0 ? ((completedCnt / habits.length) * 100).toFixed(0) : 0;
     
-
+    // console.log(progress);
+    useEffect(() => {
+        if (progress === '100') {
+            setDailyHabitsFinishedPopup(true);
+        }
+    }, [progress])
 
   return (
     <div className='container'>
+      {dailyHabitsFinishedPopup && <AllHabitsFinishedPopup 
+          setDailyHabitsFinishedPopup={setDailyHabitsFinishedPopup}
+          progress={progress}
+        />}
       {deleteHabitPopup && <ConfirmDeleteHabit 
         handleDeleteHabit={handleDeleteHabit}
         setDeleteHabitPopup={setDeleteHabitPopup}
