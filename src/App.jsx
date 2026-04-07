@@ -105,11 +105,11 @@ function App() {
         }
     }
 
-    let progress = habits.length > 0 ? ((completedCnt / habits.length) * 100).toFixed(0) : 0;
+    let progress = habits.length > 0 ? Math.round((completedCnt / habits.length) * 100) : 0;
     
     // console.log(progress);
     useEffect(() => {
-        if (progress === '100') {
+        if (progress === 100) {
             setDailyHabitsFinishedPopup(true);
         }
     }, [progress])
