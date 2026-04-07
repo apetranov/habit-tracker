@@ -3,11 +3,14 @@ import './App.css'
 import HabitInput from './components/HabitInput'
 import HabitList from './components/HabitList';
 import DailyProgressBar from './components/DailyProgressBar';
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 function App() {
   const [habits, setHabits] = useState(JSON.parse(localStorage.getItem('habits')) || []);
   const [habitName, setHabitName] = useState('');
-  const [habitId, setHabitId] = useState(JSON.parse(localStorage.getItem('habitId')) || 0);
+  // const [habitId, setHabitId] = useState(uuidv4());
 
   const getCurrentDate = () => {
    
@@ -46,7 +49,8 @@ function App() {
   }
 
   const handleAddHabit = () => {
-    setHabitId(id => id + 1);
+    
+    // setHabitId(uuidv4());
     if (!habitName) {
       return;
     }
@@ -60,7 +64,7 @@ function App() {
     }
 
     const newHabit = {
-      id: habitId,
+      id: uuidv4(),
       name: habitName,
       completedDates: []
     }
@@ -69,7 +73,6 @@ function App() {
 
     setHabits(habitsCopy);
     
-    localStorage.setItem('habitId', JSON.stringify(habitId));
     localStorage.setItem('habits', JSON.stringify(habitsCopy));
   }
 
