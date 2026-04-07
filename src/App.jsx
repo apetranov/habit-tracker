@@ -76,6 +76,22 @@ function App() {
     localStorage.setItem('habits', JSON.stringify(habitsCopy));
   }
 
+  const handleDeleteHabit = (habitId) => {
+    let habitsCopy;
+
+    if (!localStorage.getItem('habits')) {
+      habitsCopy = [...habits];
+    } else {
+      habitsCopy = [...JSON.parse(localStorage.getItem('habits'))];
+    }
+
+    const modifiedHabits = habitsCopy.filter(habit => habit.id !== habitId);
+    
+    setHabits(modifiedHabits);
+
+    localStorage.setItem('habits', JSON.stringify(modifiedHabits));
+  }
+
   let completedCnt = 0;
 
     for (let i = 0; i < habits.length; i++) {
@@ -103,6 +119,7 @@ function App() {
         handleCompleteHabit={handleCompleteHabit}
         habits={habits}
         getCurrentDate={getCurrentDate}
+        handleDeleteHabit={handleDeleteHabit}
       />
     </div>
   )
