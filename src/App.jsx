@@ -6,6 +6,7 @@ import DailyProgressBar from './components/DailyProgressBar';
 import ConfirmDeleteHabit from './components/ConfirmDeleteHabit';
 import AllHabitsFinishedPopup from './components/AllHabitsFinishedPopup';
 import { v4 as uuidv4 } from 'uuid';
+import EditHabitPopup from './components/EditHabitPopup';
 
 
 
@@ -14,7 +15,10 @@ function App() {
   const [habitName, setHabitName] = useState('');
   const [deleteHabitPopup, setDeleteHabitPopup] = useState(false);
   const [idToDelete, setIdToDelete] = useState('');
+  const [idToEdit, setIdToEdit] = useState('');
+  const [editedHabitName, setEditedHabitName] = useState('');
   const [dailyHabitsFinishedPopup, setDailyHabitsFinishedPopup] = useState(false);
+  const [editHabitPopup, setEditHabitPopup] = useState(false);
   // const [habitId, setHabitId] = useState(uuidv4());
 
   const getCurrentDate = () => {
@@ -97,6 +101,31 @@ function App() {
     localStorage.setItem('habits', JSON.stringify(modifiedHabits));
   }
 
+  const handleEditHabit = (newName, habitId) => {
+    // setHabitId(uuidv4());
+    if (!newName) {
+      return;
+    }
+
+    let habitsCopy;
+
+    if (!localStorage.getItem('habits')) {
+      habitsCopy = [...habits];
+    } else {
+      habitsCopy = [...JSON.parse(localStorage.getItem('habits'))];
+    }
+
+    for (let i = 0; i < habitsCopy.length; i++) {
+      if (habitsCopy[i].id === habitId) {
+        habitsCopy[i].name = newName;
+      }
+    }
+
+    setHabits(habitsCopy);
+    
+    localStorage.setItem('habits', JSON.stringify(habitsCopy));
+  }
+
   let completedCnt = 0;
 
     for (let i = 0; i < habits.length; i++) {
@@ -116,6 +145,12 @@ function App() {
 
   return (
     <div className='container'>
+      {editHabitPopup && <EditHabitPopup
+        setEditHabitPopup={setEditHabitPopup}
+        handleEditHabit={handleEditHabit}
+        idToEdit={idToEdit}
+        habits={habits}
+      />}
       {dailyHabitsFinishedPopup && <AllHabitsFinishedPopup 
           setDailyHabitsFinishedPopup={setDailyHabitsFinishedPopup}
           progress={progress}
@@ -144,6 +179,8 @@ function App() {
         deleteHabitPopup={deleteHabitPopup}
         setDeleteHabitPopup={setDeleteHabitPopup}
         setIdToDelete={setIdToDelete}
+        setEditHabitPopup={setEditHabitPopup}
+        setIdToEdit={setIdToEdit}
       />
     </div>
   )
