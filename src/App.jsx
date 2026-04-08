@@ -16,7 +16,7 @@ function App() {
   const [deleteHabitPopup, setDeleteHabitPopup] = useState(false);
   const [idToDelete, setIdToDelete] = useState('');
   const [idToEdit, setIdToEdit] = useState('');
-  const [editedHabitName, setEditedHabitName] = useState('');
+  // const [editedHabitName, setEditedHabitName] = useState('');
   const [dailyHabitsFinishedPopup, setDailyHabitsFinishedPopup] = useState(false);
   const [editHabitPopup, setEditHabitPopup] = useState(false);
   // const [habitId, setHabitId] = useState(uuidv4());
