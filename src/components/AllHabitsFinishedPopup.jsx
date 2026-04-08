@@ -3,8 +3,6 @@ import React from 'react'
 import './styles/AllHabitsFinishedPopup.css'
 
 function AllHabitsFinishedPopup({ setDailyHabitsFinishedPopup }) {
-    
-    
   return (
       <div className='overlay'>
           <div className='delete-confirm-container'>
