@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles/HabitList.css'
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 
 function HabitList({ 
     habits, 
@@ -8,7 +8,9 @@ function HabitList({
     getCurrentDate, 
     // handleDeleteHabit,
     setDeleteHabitPopup,
-    setIdToDelete
+    setIdToDelete,
+    setEditHabitPopup,
+    setIdToEdit
 }) {
   return (
     <div className='habit-list'>
@@ -26,6 +28,12 @@ function HabitList({
                             onClick={() => {
                                 setDeleteHabitPopup(true);
                                 setIdToDelete(habit.id);
+                            }}
+                        />
+                        <FaRegEdit className='edit-icon'
+                            onClick={() => {
+                                setIdToEdit(habit.id);
+                                setEditHabitPopup(true);
                             }}
                         />
                     </div>
