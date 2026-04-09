@@ -188,6 +188,7 @@ function App() {
           habits={habits}
         />
         <HabitList 
+          colorTheme={colorTheme}
           handleCompleteHabit={handleCompleteHabit}
           habits={habits}
           getCurrentDate={getCurrentDate}

@@ -10,14 +10,15 @@ function HabitList({
     setDeleteHabitPopup,
     setIdToDelete,
     setEditHabitPopup,
-    setIdToEdit
+    setIdToEdit,
+    colorTheme
 }) {
   return (
     <div className='habit-list'>
         {habits.map(habit => {
             return <div 
                 className={
-                    `habit-container 
+                    `${colorTheme === 'light' ? 'habit-container' : 'dark-habit-container'} 
                     ${habit.completedDates.includes(getCurrentDate()) ? `habit-completed` : ``}`
                     } key={habit.id}>
                     <div className='habit-actions-div'>
