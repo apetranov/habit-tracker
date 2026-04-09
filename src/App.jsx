@@ -8,6 +8,7 @@ import AllHabitsFinishedPopup from './components/AllHabitsFinishedPopup';
 import EditHabitPopup from './components/EditHabitPopup';
 import { v4 as uuidv4 } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
+import ColorTheme from './components/ColorTheme';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const [dailyHabitsFinishedPopup, setDailyHabitsFinishedPopup] = useState(false);
   const [editHabitPopup, setEditHabitPopup] = useState(false);
   // const [habitId, setHabitId] = useState(uuidv4());
+  const [colorTheme, setColorTheme] = useState(JSON.parse(localStorage.getItem('colorTheme')) || 'light');
 
   const getCurrentDate = () => {
    
@@ -153,6 +155,10 @@ function App() {
 
   return (
     <div className='container'>
+      <ColorTheme 
+        setColorTheme={setColorTheme}
+        colorTheme={colorTheme}
+      />
       {editHabitPopup && <EditHabitPopup
         setEditHabitPopup={setEditHabitPopup}
         handleEditHabit={handleEditHabit}
