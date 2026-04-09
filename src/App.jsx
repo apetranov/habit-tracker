@@ -205,6 +205,7 @@ function App() {
         <ToastContainer
           position='top-center'
           autoClose={2500}
+          theme={`${colorTheme === 'light' ? 'light' : 'dark'}`}
         />
       </div>
     </div>
