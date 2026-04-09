@@ -171,6 +171,7 @@ function App() {
             progress={progress}
           />}
         {deleteHabitPopup && <ConfirmDeleteHabit 
+          colorTheme={colorTheme}
           handleDeleteHabit={handleDeleteHabit}
           setDeleteHabitPopup={setDeleteHabitPopup}
           idToDelete={idToDelete}
