@@ -8,6 +8,7 @@ import AllHabitsFinishedPopup from './components/AllHabitsFinishedPopup';
 import EditHabitPopup from './components/EditHabitPopup';
 import { v4 as uuidv4 } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
+import ColorTheme from './components/ColorTheme';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const [dailyHabitsFinishedPopup, setDailyHabitsFinishedPopup] = useState(false);
   const [editHabitPopup, setEditHabitPopup] = useState(false);
   // const [habitId, setHabitId] = useState(uuidv4());
+  const [colorTheme, setColorTheme] = useState(JSON.parse(localStorage.getItem('colorTheme')) || 'light');
 
   const getCurrentDate = () => {
    
@@ -152,49 +154,62 @@ function App() {
     }, [progress])
 
   return (
-    <div className='container'>
-      {editHabitPopup && <EditHabitPopup
-        setEditHabitPopup={setEditHabitPopup}
-        handleEditHabit={handleEditHabit}
-        idToEdit={idToEdit}
-        habits={habits}
-      />}
-      {dailyHabitsFinishedPopup && <AllHabitsFinishedPopup 
-          setDailyHabitsFinishedPopup={setDailyHabitsFinishedPopup}
-          progress={progress}
+    <div className={`main-container ${colorTheme === 'dark' ? `dark-body` : ``}`}>
+      <div className={`container`} >
+        <ColorTheme 
+          setColorTheme={setColorTheme}
+          colorTheme={colorTheme}
+        />
+        {editHabitPopup && <EditHabitPopup
+          colorTheme={colorTheme}
+          setEditHabitPopup={setEditHabitPopup}
+          handleEditHabit={handleEditHabit}
+          idToEdit={idToEdit}
+          habits={habits}
         />}
-      {deleteHabitPopup && <ConfirmDeleteHabit 
-        handleDeleteHabit={handleDeleteHabit}
-        setDeleteHabitPopup={setDeleteHabitPopup}
-        idToDelete={idToDelete}
-        habits={habits}
-      />}
-      <HabitInput 
-        handleAddHabit={handleAddHabit}
-        habitName={habitName}
-        setHabitName={setHabitName}
-        habits={habits}
-      />
-      <DailyProgressBar
-        progress={progress}
-        habits={habits}
-      />
-      <HabitList 
-        handleCompleteHabit={handleCompleteHabit}
-        habits={habits}
-        getCurrentDate={getCurrentDate}
-        handleDeleteHabit={handleDeleteHabit}
-        deleteHabitPopup={deleteHabitPopup}
-        setDeleteHabitPopup={setDeleteHabitPopup}
-        setIdToDelete={setIdToDelete}
-        setEditHabitPopup={setEditHabitPopup}
-        setIdToEdit={setIdToEdit}
-      />
-      <ToastContainer
-        position='top-center'
-        autoClose={2500}
-      />
+        {dailyHabitsFinishedPopup && <AllHabitsFinishedPopup 
+            colorTheme={colorTheme}
+            setDailyHabitsFinishedPopup={setDailyHabitsFinishedPopup}
+            progress={progress}
+          />}
+        {deleteHabitPopup && <ConfirmDeleteHabit 
+          colorTheme={colorTheme}
+          handleDeleteHabit={handleDeleteHabit}
+          setDeleteHabitPopup={setDeleteHabitPopup}
+          idToDelete={idToDelete}
+          habits={habits}
+        />}
+        <HabitInput
+          colorTheme={colorTheme}
+          handleAddHabit={handleAddHabit}
+          habitName={habitName}
+          setHabitName={setHabitName}
+          habits={habits}
+        />
+        <DailyProgressBar
+          progress={progress}
+          habits={habits}
+        />
+        <HabitList 
+          colorTheme={colorTheme}
+          handleCompleteHabit={handleCompleteHabit}
+          habits={habits}
+          getCurrentDate={getCurrentDate}
+          handleDeleteHabit={handleDeleteHabit}
+          deleteHabitPopup={deleteHabitPopup}
+          setDeleteHabitPopup={setDeleteHabitPopup}
+          setIdToDelete={setIdToDelete}
+          setEditHabitPopup={setEditHabitPopup}
+          setIdToEdit={setIdToEdit}
+        />
+        <ToastContainer
+          position='top-center'
+          autoClose={2500}
+          theme={`${colorTheme === 'light' ? 'light' : 'dark'}`}
+        />
+      </div>
     </div>
+    
   )
 }
 

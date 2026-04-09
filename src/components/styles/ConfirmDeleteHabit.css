@@ -27,6 +27,20 @@
   gap: 50px;
 }
 
+.dark-delete-confirm-container {
+  background-color: rgb(40, 40, 40);
+  color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
 .action-buttons-div {
     display: flex;
     justify-content: end;
@@ -45,6 +59,24 @@
     color: rgb(212, 0, 0);
 }
 
+.dark-delete-button {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background-color: rgb(40, 40, 40);
+    border: 1px solid rgb(212, 0, 0);
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s;
+    color: rgb(212, 0, 0);
+}
+
+.dark-delete-button:hover {
+    background-color: rgb(212, 0, 0);
+    color: white;
+    cursor: pointer;
+}
+
 .delete-button:hover {
     background-color: rgb(212, 0, 0);
     color: white;
@@ -57,6 +89,21 @@
     padding: 8px 16px;
     border-radius: 5px;
     transition: background-color 0.2s, color 0.2s;
+}
+
+.dark-cancel-button {
+    background-color: rgb(40, 40, 40);
+    border: 1px solid rgb(255, 255, 255);
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s;
+    color: white;
+}
+
+.dark-cancel-button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(40, 40, 40);
+    cursor: pointer;
 }
 
 .cancel-button:hover {
