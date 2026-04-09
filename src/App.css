@@ -14,8 +14,12 @@
   font-family: 'Inter', sans-serif;
 }
 
+.dark-body {
+  background-color: rgb(40, 40, 40);
+  color: white;
+}
 
-body {
+.main-container {
   padding: 20px;
   margin: 0;
   min-height: 100vh;

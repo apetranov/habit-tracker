@@ -23,3 +23,27 @@
     display: flex;
     gap: 10px;
 }
+
+.dark-habit-input {
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+    background-color: rgb(40, 40, 40);
+    color: white;
+}
+
+.dark-add-habit-button {
+    background-color: rgb(40, 40, 40);
+    border: 1px solid rgb(255, 255, 255);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s; 
+}
+
+.dark-add-habit-button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(40, 40, 40);
+    cursor: pointer;
+}

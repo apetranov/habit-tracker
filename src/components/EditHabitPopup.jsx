@@ -3,8 +3,6 @@ import {useState} from 'react'
 import './styles/EditHabitPopup.css'
 
 function EditHabitPopup({ setEditHabitPopup, idToEdit, handleEditHabit, habits }) {
-    
-
     const habit = habits.filter(h => h.id === idToEdit);
 
     const [newHabitName, setNewHabitName] = useState(habit[0].name);
