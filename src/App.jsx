@@ -19,15 +19,26 @@ function App() {
   // const [editedHabitName, setEditedHabitName] = useState('');
   const [dailyHabitsFinishedPopup, setDailyHabitsFinishedPopup] = useState(false);
   const [editHabitPopup, setEditHabitPopup] = useState(false);
+  const [streakCount, setStreakCount] = useState(0);
   // const [habitId, setHabitId] = useState(uuidv4());
 
   const getCurrentDate = () => {
-   
     const date = new Date();
 
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
+
+  const getPreviousDate = (previousNum) => {
+    const date = new Date();
+    date.setDate(date.getDate() - previousNum);
+
+    const day = date.getDate();           // no padStart
+    const month = date.getMonth() + 1;    // still +1
+    const year = date.getFullYear();
 
     return `${day}-${month}-${year}`;
   }
