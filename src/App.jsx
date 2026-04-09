@@ -5,9 +5,9 @@ import HabitList from './components/HabitList';
 import DailyProgressBar from './components/DailyProgressBar';
 import ConfirmDeleteHabit from './components/ConfirmDeleteHabit';
 import AllHabitsFinishedPopup from './components/AllHabitsFinishedPopup';
-import { v4 as uuidv4 } from 'uuid';
 import EditHabitPopup from './components/EditHabitPopup';
-
+import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function App() {
@@ -81,8 +81,12 @@ function App() {
     habitsCopy.push(newHabit);
 
     setHabits(habitsCopy);
+
+    
     
     localStorage.setItem('habits', JSON.stringify(habitsCopy));
+
+    toast('🔥 Habit successfully added!');
   }
 
   const handleDeleteHabit = (habitId) => {
@@ -99,6 +103,8 @@ function App() {
     setHabits(modifiedHabits);
 
     localStorage.setItem('habits', JSON.stringify(modifiedHabits));
+
+    toast('🔥 Habit successfully deleted!');
   }
 
   const handleEditHabit = (newName, habitId) => {
@@ -122,8 +128,10 @@ function App() {
     }
 
     setHabits(habitsCopy);
-    
+
     localStorage.setItem('habits', JSON.stringify(habitsCopy));
+
+    toast('🔥 Habit successfully edited!');
   }
 
   let completedCnt = 0;
@@ -181,6 +189,10 @@ function App() {
         setIdToDelete={setIdToDelete}
         setEditHabitPopup={setEditHabitPopup}
         setIdToEdit={setIdToEdit}
+      />
+      <ToastContainer
+        position='top-center'
+        autoClose={2500}
       />
     </div>
   )
