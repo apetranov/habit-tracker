@@ -161,6 +161,7 @@ function App() {
           colorTheme={colorTheme}
         />
         {editHabitPopup && <EditHabitPopup
+          colorTheme={colorTheme}
           setEditHabitPopup={setEditHabitPopup}
           handleEditHabit={handleEditHabit}
           idToEdit={idToEdit}
