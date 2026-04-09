@@ -167,6 +167,7 @@ function App() {
           habits={habits}
         />}
         {dailyHabitsFinishedPopup && <AllHabitsFinishedPopup 
+            colorTheme={colorTheme}
             setDailyHabitsFinishedPopup={setDailyHabitsFinishedPopup}
             progress={progress}
           />}
