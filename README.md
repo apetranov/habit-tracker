@@ -18,3 +18,7 @@ Habit tracker app made with React
 # 🔴 Live link
 https://habit-tracker-coral-sigma.vercel.app
 
+# 🍿 Demo video
+https://github.com/user-attachments/assets/3229482a-c398-4cd8-af0e-473c0f725196
+
+
